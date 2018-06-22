@@ -7,19 +7,22 @@ import java.util.List;
 
 public class DiatonicNaturalMinor extends TemplateScaleClass {
 	private final RelativeNote key;
+	private final List<RelativeNote> notes;
 
 	public DiatonicNaturalMinor(RelativeNote key) {
 		this.key = key;
-	}
 
-	@Override
-	public List<RelativeNote> getNotes() {
-		return ScaleUtils.createDiatonicScale(key,
+		notes = ScaleUtils.createDiatonicScale(key,
 			WHOLE, HALF,
 			WHOLE, WHOLE, HALF,
 			WHOLE, WHOLE
 		);
 	}
+
+	@Override
+	public List<RelativeNote> getNotes() { return notes; }
+
+	public RelativeNote getDegree(DiatonicNaturalMinorDegree degree) { return notes.get(degree.getIndex()); }
 
 	@Override
 	public RelativeNote getKey() { return key; }

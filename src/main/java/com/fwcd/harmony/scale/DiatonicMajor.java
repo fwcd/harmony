@@ -7,18 +7,20 @@ import java.util.List;
 
 public class DiatonicMajor extends TemplateScaleClass {
 	private final RelativeNote key;
+	private final List<RelativeNote> notes;
 
 	public DiatonicMajor(RelativeNote key) {
 		this.key = key;
-	}
-
-	@Override
-	public List<RelativeNote> getNotes() {
-		return ScaleUtils.createDiatonicScale(key,
+		notes = ScaleUtils.createDiatonicScale(key,
 			WHOLE, WHOLE, HALF,
 			WHOLE, WHOLE, WHOLE, HALF
 		);
 	}
+
+	@Override
+	public List<RelativeNote> getNotes() { return notes; }
+
+	public RelativeNote getDegree(DiatonicMajorDegree degree) { return notes.get(degree.getIndex()); }
 
 	@Override
 	public RelativeNote getKey() { return key; }

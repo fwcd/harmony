@@ -7,14 +7,12 @@ import com.fwcd.harmony.Step;
 
 public class Chromatic extends TemplateScaleClass {
 	private final RelativeNote key;
+	private final List<RelativeNote> notes;
 
 	public Chromatic(RelativeNote key) {
 		this.key = key;
-	}
 
-	@Override
-	public List<RelativeNote> getNotes() {
-		List<RelativeNote> notes = new ArrayList<>();
+		notes = new ArrayList<>();
 		RelativeNote lastNote = key;
 		notes.add(lastNote);
 
@@ -22,9 +20,10 @@ public class Chromatic extends TemplateScaleClass {
 			lastNote = lastNote.plus(Step.HALF, variants -> variants.get(0));
 			notes.add(lastNote);
 		}
-
-		return notes;
 	}
+
+	@Override
+	public List<RelativeNote> getNotes() { return notes; }
 
 	@Override
 	public RelativeNote getKey() { return key; }
