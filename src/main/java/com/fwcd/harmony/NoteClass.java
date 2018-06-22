@@ -1,10 +1,10 @@
 package com.fwcd.harmony;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
+
+import com.fwcd.harmony.utils.Chooser;
 
 public enum NoteClass {
 	C("C", PitchClass.C, Alteration.NONE),
@@ -70,8 +70,8 @@ public enum NoteClass {
 		return nextNC;
 	}
 
-	public NoteClass plus(Step step, Function<List<NoteClass>, NoteClass> enharmonicVariantChooser) {
-		return enharmonicVariantChooser.apply(pitchClass.plusHalfSteps(1).getNoteClasses());
+	public NoteClass plus(Step step, Chooser<NoteClass> enharmonicVariantChooser) {
+		return enharmonicVariantChooser.chooseFrom(pitchClass.plusHalfSteps(1).getNoteClasses());
 	}
 
 	public NoteClass plusDiatonicStep(Step step) {

@@ -1,6 +1,6 @@
 package com.fwcd.harmony.scale;
 
-abstract class TemplateScale implements Scale {
+abstract class TemplateScaleClass implements ScaleClass {
 	@Override
 	public String toString() {
 		return getNotes().toString();

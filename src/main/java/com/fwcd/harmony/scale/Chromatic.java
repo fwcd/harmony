@@ -3,20 +3,19 @@ package com.fwcd.harmony.scale;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fwcd.harmony.Note;
 import com.fwcd.harmony.Step;
 
-public class ChromaticScale extends TemplateScale {
-	private final Note key;
+public class Chromatic extends TemplateScaleClass {
+	private final RelativeNote key;
 
-	public ChromaticScale(Note key) {
+	public Chromatic(RelativeNote key) {
 		this.key = key;
 	}
 
 	@Override
-	public List<Note> getNotes() {
-		List<Note> notes = new ArrayList<>();
-		Note lastNote = key;
+	public List<RelativeNote> getNotes() {
+		List<RelativeNote> notes = new ArrayList<>();
+		RelativeNote lastNote = key;
 		notes.add(lastNote);
 
 		for (int i=0; i<12; i++) {
@@ -28,5 +27,5 @@ public class ChromaticScale extends TemplateScale {
 	}
 
 	@Override
-	public Note getKey() { return key; }
+	public RelativeNote getKey() { return key; }
 }

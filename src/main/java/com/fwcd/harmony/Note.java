@@ -1,7 +1,6 @@
 package com.fwcd.harmony;
 
-import java.util.List;
-import java.util.function.Function;
+import com.fwcd.harmony.utils.Chooser;
 
 public class Note {
 	private final NoteClass noteClass;
@@ -28,7 +27,7 @@ public class Note {
 		return new Note(newNoteClass, octave.plus(nextOctave ? 1 : 0));
 	}
 
-	public Note plus(Step step, Function<List<NoteClass>, NoteClass> enharmonicVariantChooser) {
+	public Note plus(Step step, Chooser<NoteClass> enharmonicVariantChooser) {
 		NoteClass newNoteClass = noteClass.plus(step, enharmonicVariantChooser);
 		boolean nextOctave = newNoteClass.ordinal() < noteClass.ordinal();
 		return new Note(newNoteClass, octave.plus(nextOctave ? 1 : 0));
@@ -45,5 +44,16 @@ public class Note {
 	@Override
 	public String toString() {
 		return noteClass.toString() + octave.getSpnIndex();
+	}
+
+	@Override
+	public int hashCode() {
+		return 7 * noteClass.hashCode() * octave.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Note other = (Note) obj;
+		return noteClass.equals(other.noteClass) && octave.equals(other.octave);
 	}
 }
