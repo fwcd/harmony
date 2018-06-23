@@ -5,9 +5,13 @@ import static com.fwcd.harmony.Step.WHOLE;
 
 import java.util.List;
 
+import com.fwcd.harmony.NoteClass;
+
 public class DiatonicMajor extends TemplateScaleClass {
 	private final RelativeNote key;
 	private final List<RelativeNote> notes;
+
+	public DiatonicMajor(NoteClass key) { this(new RelativeNote(key)); }
 
 	public DiatonicMajor(RelativeNote key) {
 		this.key = key;
@@ -20,7 +24,8 @@ public class DiatonicMajor extends TemplateScaleClass {
 	@Override
 	public List<RelativeNote> getNotes() { return notes; }
 
-	public RelativeNote getDegree(DiatonicMajorDegree degree) { return notes.get(degree.getIndex()); }
+	@Override
+	protected boolean isDegreeValid(ScaleDegree degree) { return degree instanceof DiatonicMajorDegree; }
 
 	@Override
 	public RelativeNote getKey() { return key; }

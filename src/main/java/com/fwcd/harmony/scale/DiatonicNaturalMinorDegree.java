@@ -1,6 +1,6 @@
 package com.fwcd.harmony.scale;
 
-public enum DiatonicNaturalMinorDegree {
+public enum DiatonicNaturalMinorDegree implements ScaleDegree {
 	TONIC(0),
 	SUPERTONIC(1),
 	MEDIANT(2),
@@ -13,5 +13,6 @@ public enum DiatonicNaturalMinorDegree {
 
 	private DiatonicNaturalMinorDegree(int index) { this.index = index; }
 
-	public int getIndex() { return index; }
+	@Override
+	public int getNoteIndex() { return index; }
 }

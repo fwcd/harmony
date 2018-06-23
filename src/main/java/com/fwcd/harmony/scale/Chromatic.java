@@ -3,11 +3,14 @@ package com.fwcd.harmony.scale;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fwcd.harmony.NoteClass;
 import com.fwcd.harmony.Step;
 
 public class Chromatic extends TemplateScaleClass {
 	private final RelativeNote key;
 	private final List<RelativeNote> notes;
+
+	public Chromatic(NoteClass key) { this(new RelativeNote(key)); }
 
 	public Chromatic(RelativeNote key) {
 		this.key = key;
