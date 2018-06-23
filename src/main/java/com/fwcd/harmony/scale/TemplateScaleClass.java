@@ -14,4 +14,16 @@ abstract class TemplateScaleClass implements ScaleClass {
 
 	@Override
 	public String toString() { return getNotes().toString(); }
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!getClass().equals(obj.getClass())) return false;
+		ScaleClass other = (ScaleClass) obj;
+		return getNotes().equals(other.getNotes()) && getKey().equals(other.getKey());
+	}
+
+	@Override
+	public int hashCode() {
+		return 7 * getNotes().hashCode() * getKey().hashCode();
+	}
 }

@@ -37,4 +37,15 @@ public class Scale {
 	public String toString() {
 		return getNotes().toString();
 	}
+
+	@Override
+	public int hashCode() {
+		return 3 * scaleClass.hashCode() * octave.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Scale other = (Scale) obj;
+		return other.scaleClass.equals(scaleClass) && other.octave.equals(octave);
+	}
 }

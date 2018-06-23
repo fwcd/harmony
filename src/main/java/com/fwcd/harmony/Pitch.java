@@ -41,4 +41,15 @@ public class Pitch {
 	public String toString() {
 		return getPitchClass().toString() + getOctave().getSpnIndex();
 	}
+
+	@Override
+	public int hashCode() {
+		return 7 * pitchClass.hashCode() * octave.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Pitch other = (Pitch) obj;
+		return pitchClass.equals(other.pitchClass) && octave.equals(other.octave);
+	}
 }
