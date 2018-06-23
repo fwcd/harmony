@@ -4,7 +4,7 @@ import java.util.function.UnaryOperator;
 
 import com.fwcd.harmony.Note;
 import com.fwcd.harmony.NoteClass;
-import com.fwcd.harmony.Octave;
+import com.fwcd.harmony.OctaveIndex;
 import com.fwcd.harmony.Step;
 import com.fwcd.harmony.utils.Chooser;
 
@@ -26,7 +26,7 @@ public class RelativeNote {
 	}
 
 	public RelativeNote map(UnaryOperator<Note> mapper) {
-		Note result = mapper.apply(new Note(noteClass, Octave.nr(octavesDelta)));
+		Note result = mapper.apply(new Note(noteClass, OctaveIndex.nr(octavesDelta)));
 		return new RelativeNote(result.getNoteClass(), result.getOctave().getSpnIndex());
 	}
 
@@ -34,7 +34,7 @@ public class RelativeNote {
 
 	public RelativeNote plusDiatonicStep(Step step) { return map(note -> note.plusDiatonicStep(step)); }
 
-	public Note toNote(Octave baseOctave) { return new Note(noteClass, baseOctave.plus(octavesDelta)); }
+	public Note toNote(OctaveIndex baseOctave) { return new Note(noteClass, baseOctave.plus(octavesDelta)); }
 
 	public NoteClass getNoteClass() { return noteClass; }
 

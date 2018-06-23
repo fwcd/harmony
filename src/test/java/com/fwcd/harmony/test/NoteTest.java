@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import com.fwcd.harmony.Note;
 import com.fwcd.harmony.NoteClass;
-import com.fwcd.harmony.Octave;
+import com.fwcd.harmony.OctaveIndex;
 import com.fwcd.harmony.Step;
 import com.fwcd.harmony.scale.RelativeNote;
 
@@ -38,7 +38,7 @@ public class NoteTest {
 		Note dFlat = new Note("Db3");
 		assertEquals(NoteClass.D_FLAT, dFlat.getNoteClass());
 		assertEquals("Db3", dFlat.toString());
-		assertEquals(Octave.nr(3), dFlat.getOctave());
-		assertEquals(new Note(NoteClass.D_FLAT, Octave.nr(-2)), new Note(NoteClass.C, Octave.nr(-2)).plusDiatonicStep(Step.HALF));
+		assertEquals(OctaveIndex.nr(3), dFlat.getOctave());
+		assertEquals(new Note(NoteClass.D_FLAT, OctaveIndex.nr(-2)), new Note(NoteClass.C, OctaveIndex.nr(-2)).plusDiatonicStep(Step.HALF));
 	}
 }

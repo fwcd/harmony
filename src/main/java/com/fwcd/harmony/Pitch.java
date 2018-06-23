@@ -2,9 +2,9 @@ package com.fwcd.harmony;
 
 public class Pitch {
 	private final PitchClass pitchClass;
-	private final Octave octave;
+	private final OctaveIndex octave;
 
-	public Pitch(PitchClass pitchClass, Octave octave) {
+	public Pitch(PitchClass pitchClass, OctaveIndex octave) {
 		this.pitchClass = pitchClass;
 		this.octave = octave;
 	}
@@ -35,7 +35,7 @@ public class Pitch {
 
 	public PitchClass getPitchClass() { return pitchClass; }
 
-	public Octave getOctave() { return octave; }
+	public OctaveIndex getOctave() { return octave; }
 
 	@Override
 	public String toString() {

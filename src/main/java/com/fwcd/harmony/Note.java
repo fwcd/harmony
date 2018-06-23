@@ -4,7 +4,7 @@ import com.fwcd.harmony.utils.Chooser;
 
 public class Note {
 	private final NoteClass noteClass;
-	private final Octave octave;
+	private final OctaveIndex octave;
 
 	public Note(String name) {
 		int lastIndex = name.length() - 1;
@@ -13,10 +13,10 @@ public class Note {
 			throw new IllegalArgumentException(name + " (Note) needs to have the syntax <NoteClass><Octave index>, for example: C#3");
 		}
 		noteClass = NoteClass.of(name.substring(0, lastIndex));
-		octave = Octave.nr(Character.digit(lastChar, 10));
+		octave = OctaveIndex.nr(Character.digit(lastChar, 10));
 	}
 
-	public Note(NoteClass noteClass, Octave octave) {
+	public Note(NoteClass noteClass, OctaveIndex octave) {
 		this.noteClass = noteClass;
 		this.octave = octave;
 	}
@@ -39,7 +39,7 @@ public class Note {
 
 	public NoteClass getNoteClass() { return noteClass; }
 
-	public Octave getOctave() { return octave; }
+	public OctaveIndex getOctave() { return octave; }
 
 	@Override
 	public String toString() {

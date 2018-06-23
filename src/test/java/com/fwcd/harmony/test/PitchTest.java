@@ -2,7 +2,7 @@ package com.fwcd.harmony.test;
 
 import static org.junit.Assert.assertEquals;
 
-import com.fwcd.harmony.Octave;
+import com.fwcd.harmony.OctaveIndex;
 import com.fwcd.harmony.Pitch;
 import com.fwcd.harmony.PitchClass;
 
@@ -24,12 +24,12 @@ public class PitchTest {
 
 	@Test
 	public void testPitch() {
-		Pitch a = new Pitch(PitchClass.A_SHARP_B_FLAT, Octave.SMALL);
+		Pitch a = new Pitch(PitchClass.A_SHARP_B_FLAT, OctaveIndex.SMALL);
 		Pitch b = a.plusHalfSteps(3);
 		assertEquals(PitchClass.C_SHARP_D_FLAT, b.getPitchClass());
-		assertEquals(Octave.ONE_LINED, b.getOctave());
+		assertEquals(OctaveIndex.ONE_LINED, b.getOctave());
 		Pitch c = a.plusHalfSteps(-16);
 		assertEquals(PitchClass.F_SHARP_G_FLAT, c.getPitchClass());
-		assertEquals(Octave.GREAT, c.getOctave());
+		assertEquals(OctaveIndex.GREAT, c.getOctave());
 	}
 }

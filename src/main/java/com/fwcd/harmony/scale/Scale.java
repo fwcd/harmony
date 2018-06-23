@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.fwcd.harmony.Note;
-import com.fwcd.harmony.Octave;
+import com.fwcd.harmony.OctaveIndex;
 
 public class Scale {
 	private final ScaleClass scaleClass;
-	private final Octave octave;
+	private final OctaveIndex octave;
 
-	public Scale(ScaleClass scaleClass, Octave octave) {
+	public Scale(ScaleClass scaleClass, OctaveIndex octave) {
 		this.scaleClass = scaleClass;
 		this.octave = octave;
 	}
@@ -31,7 +31,7 @@ public class Scale {
 
 	public ScaleClass getScaleClass() { return scaleClass; }
 
-	public Octave getOctave() { return octave; }
+	public OctaveIndex getOctave() { return octave; }
 
 	@Override
 	public String toString() {
