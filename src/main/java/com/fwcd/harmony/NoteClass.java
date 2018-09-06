@@ -27,13 +27,10 @@ public enum NoteClass {
 
 	private static final Map<String, NoteClass> NAME_LOOKUP_TABLE = new HashMap<>();
 	private static final Map<Character, Map<Alteration, NoteClass>> CHAR_LOOKUP_TABLE = new HashMap<>();
-	private final String ncName;
-	private final PitchClass pitchClass;
-	private final Alteration alteration;
 
 	static {
 		for (NoteClass noteClass : values()) {
-			NAME_LOOKUP_TABLE.put(noteClass.ncName, noteClass);
+			NAME_LOOKUP_TABLE.put(noteClass.name, noteClass);
 			char character = noteClass.getCharacter();
 			CHAR_LOOKUP_TABLE.putIfAbsent(character, new HashMap<>());
 			CHAR_LOOKUP_TABLE.get(character).put(noteClass.alteration, noteClass);
@@ -41,15 +38,19 @@ public enum NoteClass {
 			noteClass.pitchClass.addNoteClass(noteClass);
 		}
 	}
+	
+	private final String name;
+	private final PitchClass pitchClass;
+	private final Alteration alteration;
 
-	private NoteClass(String ncName, PitchClass pitchClass, Alteration alteration) {
-		this.ncName = ncName;
+	private NoteClass(String name, PitchClass pitchClass, Alteration alteration) {
+		this.name = name;
 		this.pitchClass = pitchClass;
 		this.alteration = alteration;
 	}
 
 	public static NoteClass of(String name) {
-		return Objects.requireNonNull(NAME_LOOKUP_TABLE.get(name));
+		return Objects.requireNonNull(NAME_LOOKUP_TABLE.get(name), name + " does not correspond to a known NoteClass");
 	}
 
 	public int halfStepsTo(NoteClass next) {
@@ -78,7 +79,7 @@ public enum NoteClass {
 		return plusHalfStepsWithDifferentChar(step.getHalfSteps());
 	}
 
-	public char getCharacter() { return ncName.charAt(0); }
+	public char getCharacter() { return name.charAt(0); }
 
 	public PitchClass getPitchClass() { return pitchClass; }
 
@@ -86,6 +87,6 @@ public enum NoteClass {
 
 	@Override
 	public String toString() {
-		return ncName;
+		return name;
 	}
 }

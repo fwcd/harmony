@@ -7,13 +7,20 @@ public class Note {
 	private final OctaveIndex octave;
 
 	public Note(String name) {
-		int lastIndex = name.length() - 1;
-		char lastChar = name.charAt(lastIndex);
-		if (!Character.isDigit(lastChar)) {
+		try {
+			int i = name.length();
+			char c;
+			
+			do {
+				i--;
+				c = name.charAt(i - 1);
+			} while (Character.isDigit(c) || (c == '-'));
+			
+			noteClass = NoteClass.of(name.substring(0, i));
+			octave = OctaveIndex.nr(Integer.parseInt(name.substring(i)));
+		} catch (IndexOutOfBoundsException | NumberFormatException e) {
 			throw new IllegalArgumentException(name + " (Note) needs to have the syntax <NoteClass><Octave index>, for example: C#3");
 		}
-		noteClass = NoteClass.of(name.substring(0, lastIndex));
-		octave = OctaveIndex.nr(Character.digit(lastChar, 10));
 	}
 
 	public Note(NoteClass noteClass, OctaveIndex octave) {

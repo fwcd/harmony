@@ -9,18 +9,18 @@ import java.util.Map;
 import com.fwcd.harmony.utils.BoolMap;
 
 public enum PitchClass {
-	C(0, false, 'C'),
-	C_SHARP_D_FLAT(1, true, 'C', 'D'),
-	D(2, false, 'D'),
-	D_SHARP_E_FLAT(3, true, 'D', 'E'),
-	E(4, false, 'E'),
-	F(5, false, 'F'),
-	F_SHARP_G_FLAT(6, true, 'F', 'G'),
-	G(7, false, 'G'),
-	G_SHARP_A_FLAT(8, true, 'G', 'A'),
-	A(9, false, 'A'),
-	A_SHARP_B_FLAT(10, true, 'A', 'B'),
-	B(11, false, 'B');
+	C("C", 0, false, 'C'),
+	C_SHARP_D_FLAT("C#/Db", 1, true, 'C', 'D'),
+	D("D", 2, false, 'D'),
+	D_SHARP_E_FLAT("D#/Eb", 3, true, 'D', 'E'),
+	E("E", 4, false, 'E'),
+	F("F", 5, false, 'F'),
+	F_SHARP_G_FLAT("F#/Gb", 6, true, 'F', 'G'),
+	G("G", 7, false, 'G'),
+	G_SHARP_A_FLAT("G#/Ab", 8, true, 'G', 'A'),
+	A("A", 9, false, 'A'),
+	A_SHARP_B_FLAT("A#/Bb", 10, true, 'A', 'B'),
+	B("B", 11, false, 'B');
 
 	private static final Map<Character, BoolMap<PitchClass>> LOOKUP_TABLE = new HashMap<>();
 
@@ -32,13 +32,15 @@ public enum PitchClass {
 			}
 		}
 	}
-
+	
+	private final String name;
 	private final int index;
 	private final char[] characters;
 	private final boolean isSemitone;
 	private final List<NoteClass> noteClasses = new ArrayList<>();
 
-	private PitchClass(int index, boolean isSemitone, char... characters) {
+	private PitchClass(String name, int index, boolean isSemitone, char... characters) {
+		this.name = name;
 		this.index = index;
 		this.characters = characters;
 		this.isSemitone = isSemitone;
@@ -79,4 +81,8 @@ public enum PitchClass {
 			return values().length + difference;
 		}
 	}
+	
+	
+	@Override
+	public String toString() { return name; }
 }

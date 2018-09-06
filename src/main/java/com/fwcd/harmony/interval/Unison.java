@@ -13,8 +13,6 @@ public class Unison implements NoteInterval, PitchInterval, DiatonicInterval {
 
 	private Unison() {}
 
-	public static Unison get() { return INSTANCE; }
-
 	@Override
 	public Pitch apply(Pitch base, int times) { return base; }
 
